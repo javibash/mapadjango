@@ -18,14 +18,15 @@ Including another URLconf
 from django.urls import path
 from . import views
 
-app_name = "polls"  # <-- CAMBIO AQUÍ
+app_name = "polls"
 
 urlpatterns = [
-    path("", views.VistaIndice.as_view(), name="inicio"),
-    path("<int:pk>/", views.VistaDetalle.as_view(), name="detalle"),
-    path("<int:pk>/resultados/", views.VistaResultados.as_view(), name="resultados"),
-    path("<int:pregunta_id>/votar/", views.votar, name="votar"),
-    path("crear/", views.crear_pregunta, name="crear_pregunta"),
-    path("<int:pregunta_id>/agregar_opcion/", views.agregar_opcion, name="agregar_opcion"),
+    path("", views.VistaIndice.as_view(), name="inicio"),  # Listado de encuestas
+    path("crear/", views.crear_pregunta, name="crear_pregunta"),  # Crear nueva pregunta
+    path("<int:pk>/modificar/", views.VistaModificarPregunta.as_view(), name="modificar_pregunta"),  # Modificar pregunta
+    path("<int:pregunta_id>/eliminar/", views.eliminar_pregunta, name="eliminar_pregunta"),  # Eliminar pregunta
+    path("<int:pk>/", views.VistaDetalle.as_view(), name="detalle"),  # Detalle de la pregunta
+    path("<int:pk>/resultados/", views.VistaResultados.as_view(), name="resultados"),  # Resultados
+    path("<int:pregunta_id>/votar/", views.votar, name="votar"),  # Votar
+    path("<int:pregunta_id>/agregar_opcion/", views.agregar_opcion, name="agregar_opcion"),  # Agregar opción
 ]
-
