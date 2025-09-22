@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Resultados</title>
-    <!-- Tipografía Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-     body {
+        body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -28,15 +27,9 @@
             text-align: center;
         }
 
-        h1 {
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+        h1 { font-weight: 600; margin-bottom: 20px; }
 
-        ul {
-            padding: 0;
-            list-style: none;
-        }
+        ul { padding: 0; list-style: none; }
 
         li {
             background: rgba(255, 255, 255, 0.1);
@@ -57,13 +50,8 @@
             transition: background 0.3s;
         }
 
-        a:hover, .btn:hover {
-            background: #ffaa00;
-        }
-
-        p {
-            margin-top: 20px;
-        }
+        a:hover, .btn:hover { background: #ffaa00; }
+        p { margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -80,18 +68,16 @@
     </ul>
 
     <!-- Volver a la pregunta -->
-    <a href="{% url 'encuestas:detalle' pregunta.id %}">Volver a la pregunta</a>
+    <a href="{% url 'polls:detalle' pregunta.id %}">Volver a la pregunta</a>
 
     <!-- Botón para ir al índice de encuestas -->
     <p>
-        <a href="{% url 'encuestas:inicio' %}" class="btn">Encuestas</a>
+        <a href="{% url 'polls:inicio' %}" class="btn">Encuestas</a>
     </p>
 
     <!-- Botón para ir a inicio del sitio -->
     <a href="http://127.0.0.1:8000/" class="btn">Inicio</a>
 </div>
-
-
 
 </body>
 </html>

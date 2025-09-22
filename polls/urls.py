@@ -15,12 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-
-
 from django.urls import path
 from . import views
 
-app_name = "encuestas"  
+app_name = "polls"  # <-- CAMBIO AQUÍ
 
 urlpatterns = [
     path("", views.VistaIndice.as_view(), name="inicio"),
@@ -30,3 +28,4 @@ urlpatterns = [
     path("crear/", views.crear_pregunta, name="crear_pregunta"),
     path("<int:pregunta_id>/agregar_opcion/", views.agregar_opcion, name="agregar_opcion"),
 ]
+

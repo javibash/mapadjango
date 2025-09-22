@@ -45,19 +45,19 @@ def votar(request, pregunta_id):
     else:
         opcion_seleccionada.votos = F("votos") + 1
         opcion_seleccionada.save()
-        return HttpResponseRedirect(reverse("encuestas:resultados", args=(pregunta.id,)))
+        return HttpResponseRedirect(reverse("polls:resultados", args=(pregunta.id,)))
 
 # Crear pregunta
 def crear_pregunta(request):
     if request.method == "POST":
-        form = PreguntaForm(request.POST)  # ← actualizado
+        form = PreguntaForm(request.POST)
         if form.is_valid():
             pregunta = form.save(commit=False)
             pregunta.fecha_publicacion = timezone.now()
             pregunta.save()
-            return redirect("encuestas:agregar_opcion", pregunta_id=pregunta.id)
+            return redirect("polls:agregar_opcion", pregunta_id=pregunta.id)
     else:
-        form = PreguntaForm()  # ← actualizado
+        form = PreguntaForm()
     return render(request, "polls/create_question.html", {"form": form})
 
 # Agregar opciones a una pregunta
@@ -65,15 +65,15 @@ def agregar_opcion(request, pregunta_id):
     pregunta = get_object_or_404(Pregunta, pk=pregunta_id)
 
     if request.method == "POST":
-        form = OpcionForm(request.POST)  # ← actualizado
+        form = OpcionForm(request.POST)
         if form.is_valid():
             opcion = form.save(commit=False)
             opcion.pregunta = pregunta
             opcion.votos = 0
             opcion.save()
-            return redirect("encuestas:agregar_opcion", pregunta_id=pregunta.id)
+            return redirect("polls:agregar_opcion", pregunta_id=pregunta.id)
     else:
-        form = OpcionForm()  # ← actualizado
+        form = OpcionForm()
 
     opciones = pregunta.opcion_set.all()
     return render(
