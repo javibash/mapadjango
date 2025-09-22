@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Encuestas</title>
+    <!-- Tipografía Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            background: rgba(0,0,0,0.6);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .add-btn {
+            display: block;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .add-btn a {
+            background: #ffcc00;
+            color: #1e3c72;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .add-btn a:hover {
+            background: #ffaa00;
+            color: white;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: rgba(255,255,255,0.1);
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        li:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        a:hover {
+            color: #ffaa00;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        /* Botón inferior */
+        .bottom-btn {
+            margin-top: auto;
+            margin-bottom: 30px;
+        }
+
+        .bottom-btn a {
+            background: #ffcc00;
+            color: #1e3c72;
+            padding: 12px 26px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .bottom-btn a:hover {
+            background: #ffaa00;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encuestas</h1>
+
+        <!-- Botón para agregar nueva pregunta -->
+        <div class="add-btn">
+            <a href="{% url 'encuestas:crear_pregunta' %}">➕ Agregar Pregunta</a>
+        </div>
+
+     {% if lista_preguntas %}
+<ul>
+    {% for pregunta in lista_preguntas %}
+        <li>
+            {{ pregunta.texto_pregunta }}
+            <a class="results-link" href="{% url 'encuestas:resultados' pregunta.id %}">
+                Ver Resultados
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay encuestas que mostrar.</p>
+{% endif %}
+
+
+        <!-- Botón inferior -->
+        <div class="bottom-btn">
+            <a href="http://127.0.0.1:8000/">Inicio</a>
+        </div>
+    </div>
+</body>
+
+
+</body>
+</html>

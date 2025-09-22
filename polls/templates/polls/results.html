@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados</title>
+    <!-- Tipografía Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+     body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        a, .btn {
+            display: inline-block;
+            margin: 10px 5px;
+            background: #ffcc00;
+            color: black;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        a:hover, .btn:hover {
+            background: #ffaa00;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Resultados de: {{ pregunta.texto_pregunta }}</h1>
+
+    <ul>
+        {% for opcion in pregunta.opcion_set.all %}
+            <li>{{ opcion.texto_opcion }} — {{ opcion.votos }} voto{{ opcion.votos|pluralize:"s" }}</li>
+        {% empty %}
+            <li>No hay opciones registradas para esta pregunta.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Volver a la pregunta -->
+    <a href="{% url 'encuestas:detalle' pregunta.id %}">Volver a la pregunta</a>
+
+    <!-- Botón para ir al índice de encuestas -->
+    <p>
+        <a href="{% url 'encuestas:inicio' %}" class="btn">Encuestas</a>
+    </p>
+
+    <!-- Botón para ir a inicio del sitio -->
+    <a href="http://127.0.0.1:8000/" class="btn">Inicio</a>
+</div>
+
+
+
+</body>
+</html>
