@@ -16,7 +16,8 @@ load_dotenv()
 # Quick-start development settings
 SECRET_KEY = 'django-insecure-41prgf+=eq2q))u_!feo2!c4+xdg27_8k_1n%c((e--&w#60u9'
 DEBUG = False
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["mapadjango.onrender.com", "localhost"]
+
 
 # Application definition
 INSTALLED_APPS = [
